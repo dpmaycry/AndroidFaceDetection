@@ -120,7 +120,7 @@ public class CameraInterface {
             Size previewSize = CamParaUtil.getInstance().getPropPreviewSize(
                     mParams.getSupportedPreviewSizes(), previewRate, 800);
 //            mParams.setPreviewSize(previewSize.width, previewSize.height);
-            mParams.setPreviewSize(1920, 1080 - 48);
+            mParams.setPreviewSize(1024, 576);
 
 //            mCamera.setDisplayOrientation(90);
 

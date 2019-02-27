@@ -30,9 +30,9 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     private static final Scalar EYE_RECT_COLOR = new Scalar(0, 255, 0);
 
     static {
-        System.loadLibrary("opencv_java");
-        System.loadLibrary("opencv_java3");
-        System.loadLibrary("jupiter_opencv_320");
+//        System.loadLibrary("opencv_java");
+        System.loadLibrary("opencv_java4");
+        System.loadLibrary("jupiter_opencv_401");
     }
 
     private CameraBridgeViewBase mOpenCvCameraView;
@@ -104,7 +104,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
         findViewById(R.id.switch_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOpenCvCameraView.switchCamera();
+//                mOpenCvCameraView.switchCamera();
             }
         });
     }
@@ -152,6 +152,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
             Imgproc.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);
         }
 
+        Log.e("FRAME","123123");
 //        MatOfRect eyes = new MatOfRect();
 //
 //        Rect[] eyesArray = mEyeDetector.detectObject(mGray, eyes);
