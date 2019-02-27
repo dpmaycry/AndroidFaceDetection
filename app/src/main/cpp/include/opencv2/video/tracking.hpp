@@ -78,6 +78,9 @@ See the OpenCV sample camshiftdemo.c that tracks colored objects.
  */
 CV_EXPORTS_W RotatedRect CamShift( InputArray probImage, CV_IN_OUT Rect& window,
                                    TermCriteria criteria );
+/** @example samples/cpp/camshiftdemo.cpp
+An example using the mean-shift tracking algorithm
+*/
 
 /** @brief Finds an object on a back projection image.
 
@@ -97,8 +100,6 @@ projection and remove the noise. For example, you can do this by retrieving conn
 with findContours , throwing away contours with small area ( contourArea ), and rendering the
 remaining contours with drawContours.
 
-@note
--   A mean-shift tracking sample can be found at opencv_source_code/samples/cpp/camshiftdemo.cpp
  */
 CV_EXPORTS_W int meanShift( InputArray probImage, CV_IN_OUT Rect& window, TermCriteria criteria );
 
@@ -122,6 +123,10 @@ CV_EXPORTS_W int buildOpticalFlowPyramid( InputArray img, OutputArrayOfArrays py
                                           int pyrBorder = BORDER_REFLECT_101,
                                           int derivBorder = BORDER_CONSTANT,
                                           bool tryReuseInputImage = true );
+
+/** @example samples/cpp/lkdemo.cpp
+An example using the Lucas-Kanade optical flow algorithm
+*/
 
 /** @brief Calculates an optical flow for a sparse feature set using the iterative Lucas-Kanade method with
 pyramids.
@@ -247,7 +252,9 @@ when fullAffine=false.
 @sa
 estimateAffine2D, estimateAffinePartial2D, getAffineTransform, getPerspectiveTransform, findHomography
  */
-CV_EXPORTS_W Mat estimateRigidTransform( InputArray src, InputArray dst, bool fullAffine );
+CV_EXPORTS_W Mat estimateRigidTransform( InputArray src, InputArray dst, bool fullAffine);
+CV_EXPORTS_W Mat estimateRigidTransform( InputArray src, InputArray dst, bool fullAffine, int ransacMaxIters, double ransacGoodRatio,
+                                         int ransacSize0);
 
 
 enum
@@ -257,6 +264,10 @@ enum
     MOTION_AFFINE      = 2,
     MOTION_HOMOGRAPHY  = 3
 };
+
+/** @example samples/cpp/image_alignment.cpp
+An example using the image alignment ECC algorithm
+*/
 
 /** @brief Finds the geometric transform (warp) between two images in terms of the ECC criterion @cite EP08 .
 
@@ -297,7 +308,7 @@ row is ignored.
 Unlike findHomography and estimateRigidTransform, the function findTransformECC implements an
 area-based alignment that builds on intensity similarities. In essence, the function updates the
 initial transformation that roughly aligns the images. If this information is missing, the identity
-warp (unity matrix) should be given as input. Note that if images undergo strong
+warp (unity matrix) is used as an initialization. Note that if images undergo strong
 displacements/rotations, an initial transformation that roughly aligns the images is necessary
 (e.g., a simple euclidean/similarity transform that allows for the images showing the same image
 content approximately). Use inverse warping in the second image to take an image close to the first
@@ -313,25 +324,21 @@ CV_EXPORTS_W double findTransformECC( InputArray templateImage, InputArray input
                                       TermCriteria criteria = TermCriteria(TermCriteria::COUNT+TermCriteria::EPS, 50, 0.001),
                                       InputArray inputMask = noArray());
 
+/** @example samples/cpp/kalman.cpp
+An example using the standard Kalman filter
+*/
+
 /** @brief Kalman filter class.
 
 The class implements a standard Kalman filter <http://en.wikipedia.org/wiki/Kalman_filter>,
 @cite Welch95 . However, you can modify transitionMatrix, controlMatrix, and measurementMatrix to get
-an extended Kalman filter functionality. See the OpenCV sample kalman.cpp.
-
-@note
-
--   An example using the standard Kalman filter can be found at
-    opencv_source_code/samples/cpp/kalman.cpp
+an extended Kalman filter functionality.
+@note In C API when CvKalman\* kalmanFilter structure is not needed anymore, it should be released
+with cvReleaseKalman(&kalmanFilter)
  */
 class CV_EXPORTS_W KalmanFilter
 {
 public:
-    /** @brief The constructors.
-
-    @note In C API when CvKalman\* kalmanFilter structure is not needed anymore, it should be released
-    with cvReleaseKalman(&kalmanFilter)
-     */
     CV_WRAP KalmanFilter();
     /** @overload
     @param dynamParams Dimensionality of the state.
@@ -544,7 +551,7 @@ public:
 */
 CV_EXPORTS_W Ptr<DualTVL1OpticalFlow> createOptFlow_DualTVL1();
 
-/** @brief Class computing a dense optical flow using the Gunnar Farneback’s algorithm.
+/** @brief Class computing a dense optical flow using the Gunnar Farneback's algorithm.
  */
 class CV_EXPORTS_W FarnebackOpticalFlow : public DenseOpticalFlow
 {

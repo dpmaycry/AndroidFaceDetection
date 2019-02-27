@@ -8,9 +8,9 @@ add_library(libopencv_java3 SHARED IMPORTED )
 set_target_properties(libopencv_java3 PROPERTIES
     IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_java3.so")
 
-add_library(libopencv_java SHARED IMPORTED )
-set_target_properties(libopencv_java PROPERTIES
-    IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_java.so")
+#add_library(libopencv_java SHARED IMPORTED )
+#set_target_properties(libopencv_java PROPERTIES
+#    IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_java.so")
 
 add_library(libopencv_calib3d STATIC IMPORTED )
 set_target_properties(libopencv_calib3d PROPERTIES
@@ -19,6 +19,10 @@ set_target_properties(libopencv_calib3d PROPERTIES
 add_library(libopencv_core STATIC IMPORTED )
 set_target_properties(libopencv_core PROPERTIES
     IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_core.a")
+
+add_library(libopencv_dnn STATIC IMPORTED )
+set_target_properties(libopencv_dnn PROPERTIES
+        IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_dnn.a")
 
 add_library(libopencv_features2d STATIC IMPORTED )
 set_target_properties(libopencv_features2d PROPERTIES
@@ -76,9 +80,9 @@ add_library(libopencv_videostab STATIC IMPORTED )
 set_target_properties(libopencv_videostab PROPERTIES
     IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_videostab.a")
 
-add_library(libopencv_ts STATIC IMPORTED )
-set_target_properties(libopencv_ts PROPERTIES
-    IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_ts.a")
+#add_library(libopencv_ts STATIC IMPORTED )
+#set_target_properties(libopencv_ts PROPERTIES
+#    IMPORTED_LOCATION "${libs}/${ANDROID_ABI}/libopencv_ts.a")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -fexceptions -frtti")
 
@@ -87,7 +91,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11 -fexceptions -frtti")
 #target_link_libraries(${OpenCV_LIBS})
 
 add_library( # Sets the name of the library.
-             jupiter_opencv_320
+             jupiter_opencv_345
 
              # Sets the library as a shared library.
              SHARED
@@ -105,16 +109,17 @@ find_library( # Sets the name of the path variable.
               log)
 
 target_link_libraries(
-    jupiter_opencv_320  #opencv Version3.2.0
+    jupiter_opencv_345  #opencv Version3.4.5
     android log         #Android日志
 
     #为了避免额外安装 opencv manager 的 apk, 添加这两个动态链接库文件
     libopencv_java3     #opencv manager
-    libopencv_java      #opencv manager
+#    libopencv_java      #opencv manager
 
     #编译 opencv 需要依赖的静态链接库
     libopencv_calib3d
     libopencv_core
+    libopencv_dnn
     libopencv_features2d
     libopencv_flann
     libopencv_highgui

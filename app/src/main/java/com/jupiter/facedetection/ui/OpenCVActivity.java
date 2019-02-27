@@ -104,7 +104,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
         findViewById(R.id.switch_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOpenCvCameraView.switchCamera();
+//                mOpenCvCameraView.switchCamera();
             }
         });
     }

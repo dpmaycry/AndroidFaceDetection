@@ -109,6 +109,14 @@ namespace cv {
 //! @addtogroup stitching
 //! @{
 
+/** @example samples/cpp/stitching.cpp
+A basic example on image stitching
+*/
+
+/** @example samples/cpp/stitching_detailed.cpp
+A detailed example on image stitching
+*/
+
 /** @brief High level image stitcher.
 
 It's possible to use this class without being aware of the entire stitching pipeline. However, to
@@ -312,6 +320,7 @@ private:
 };
 
 CV_EXPORTS_W Ptr<Stitcher> createStitcher(bool try_use_gpu = false);
+CV_EXPORTS_W Ptr<Stitcher> createStitcherScans(bool try_use_gpu = false);
 
 //! @} stitching
 
